@@ -36,3 +36,7 @@ print(part2(puzzle_input))
 
 print("squash 1")
 
+print("squash 2")
+
+
+
