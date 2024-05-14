@@ -33,3 +33,5 @@ def part2(puzzle_input):
     return total
 
 print(part2(puzzle_input))
+
+print("test merge commit 1")
