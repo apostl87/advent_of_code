@@ -34,9 +34,6 @@ def part2(puzzle_input):
 
 print(part2(puzzle_input))
 
-print("squash 1")
+print("rebase 1")
 
-print("squash 2")
-
-print("squash 3")
-
+print("rebase 2")
