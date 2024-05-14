@@ -34,6 +34,9 @@ def part2(puzzle_input):
 
 print(part2(puzzle_input))
 
-print("test merge commit 1")
+print("squash 1")
 
-print("test merge commit 2")
+print("squash 2")
+
+print("squash 3")
+
