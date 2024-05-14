@@ -12,10 +12,6 @@ for history in histories:
     while set(numbers) != set([0]):
         final_numbers.append(numbers[-1])
         numbers = [numbers[i+1]-numbers[i] for i in range(len(numbers)-1)]
-    result = final_numbers.pop()
-    while final_numbers:
-        final_numbers[-1] += result
-        result = final_numbers.pop()
-    total += result
+    total += sum(final_numbers)
 
 print(total)
