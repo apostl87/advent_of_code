@@ -33,7 +33,3 @@ def part2(puzzle_input):
     return total
 
 print(part2(puzzle_input))
-
-print("rebase 1")
-
-print("rebase 2")
