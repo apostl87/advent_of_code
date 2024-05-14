@@ -37,5 +37,6 @@ print(part2(puzzle_input))
 print("rebase 1")
 
 print("rebase 2")
+
 print("rebase 3")
 
