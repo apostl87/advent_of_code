@@ -1,9 +1,12 @@
+import os
 
 test_input = False
 if test_input:
     input_file = "day24test.txt"
 else:
     input_file = "day24.txt"
+if os.getcwd().split('/')[-1] != "f2022":
+    input_file = 'f2022/' + input_file
 
 with open(input_file, "r") as f:
     input_ = f.read().strip()
@@ -35,52 +38,75 @@ print(list2string(blizzards))
 dir2coords = {'<': (0, -1), '>': (0, 1), '^': (-1, 0), 'v': (1, 0)}
 
 time = 0
-y_end, x_end = m-2, n-2
 
-actor_positions = [(0, 1)]
-while True:
-    new_blizzards = [[[] for x in range(n)] for y in range(m)]
-    
-    for y, line in enumerate(blizzards):
-        for x, blizz in enumerate(line):
-            for b in blizz:
-                delta_y, delta_x = dir2coords[b]
-                y_new = y + delta_y
-                x_new = x + delta_x
-                if y_new < 1: y_new = m-2
-                if y_new > m-2: y_new = 1
-                if x_new < 1: x_new = n-2
-                if x_new > n-2: x_new = 1
-                new_blizzards[y_new][x_new].append(b)
+y_end_, x_end_ = [m-2, 1, m-2], [n-2, 1, n-2]
+actor_positions_ = [{(0, 1)}, {(m-1, n-2)}, {(0, 1)}]
 
-    blizzards = new_blizzards
+part2 = True
 
-    time += 1
-    #print(list2string(blizzards))
-    print(time)
+for y_end, x_end, actor_positions in zip(y_end_, x_end_, actor_positions_):
+    print(y_end, x_end, actor_positions)
+    while True:
 
-    new_actor_positions = []
-    for pos in actor_positions:
-        candidates = [(pos[0]+y, pos[1]+x) for y, x in dir2coords.values()] + [(pos[0], pos[1])]
-        valid = [y > 0 and y < m-1 and x > 0 and x < n-1 for y, x in candidates]
-        for valid_, candidate in zip(valid, candidates):
-            if not valid_:
-                continue
-            if not new_blizzards[candidate[0]][candidate[1]]:
-                new_actor_positions.append(candidate)
-    
-    actor_positions = new_actor_positions
-    actor_positions_set = set(actor_positions)
+        #print("check 1")
 
-    if (y_end, x_end) in actor_positions_set:
-        print("Part 1:", time+1)
-        break
+        new_blizzards = [[[] for x in range(n)] for y in range(m)]
+        
+        for y, line in enumerate(blizzards):
+            for x, blizz in enumerate(line):
+                for b in blizz:
+                    delta_y, delta_x = dir2coords[b]
+                    y_new = y + delta_y
+                    x_new = x + delta_x
+                    if y_new < 1: y_new = m-2
+                    if y_new > m-2: y_new = 1
+                    if x_new < 1: x_new = n-2
+                    if x_new > n-2: x_new = 1
+                    new_blizzards[y_new][x_new].append(b)
 
-    if time ==  16:
-        print(list2string(blizzards))
-        print([x if x==n-4 else '' for y, x in actor_positions])
-        print(actor_positions)
-        break
-    
-    #if time == 18:
-    #    break
+        blizzards = new_blizzards
+
+        time += 1
+        #print(list2string(blizzards))
+        #print("Time", time)
+
+        #print("check 2")
+        new_actor_positions = set()
+        #print(len(actor_positions))
+        for pos in actor_positions:
+            
+            #print(pos)
+            candidates = [(pos[0]+y, pos[1]+x) for y, x in dir2coords.values()] + [(pos[0], pos[1])]
+
+            for (y, x) in candidates:
+                valid = (y, x) == (0, 1) or (y, x) == (m-1, n-2) or (y > 0 and y < m-1 and x > 0 and x < n-1)
+
+                if valid:
+                    if new_blizzards[y][x] == []:
+                        #print("here")
+                        new_actor_positions.add((y,x))
+        #print("check 2a")
+
+        actor_positions = new_actor_positions
+
+        #print("check 3")
+
+        if (y_end, x_end) in actor_positions:
+  
+            break
+
+        if time ==  2300:
+            break
+        #    print(list2string(blizzards))
+        #    print([x if x==n-4 else '' for y, x in actor_positions])
+        #    print(actor_positions)
+        #    break
+        
+        #if time == 18:
+        #    break
+    if not part2: break
+
+if part2:
+    print("Part 2:", time+1)
+else:
+    print("Part 1:", time+1)

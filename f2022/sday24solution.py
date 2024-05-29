@@ -31,6 +31,7 @@ while True:
                 new_blizzards[new_y][new_x].append(blizzard)
     blizzards = new_blizzards
     new_positions = set()
+    print(len(positions))
     for position in positions:
         for new_position in [(position[0], position[1]), (position[0] + 1, position[1]), (position[0] - 1, position[1]),
                              (position[0], position[1] + 1), (position[0], position[1] - 1)]:
