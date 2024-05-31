@@ -1,0 +1,40 @@
+#1:
+z = input[0] + 10
+
+#2:
+z = 26*z + input[1] + 5
+
+#3:
+z = 26*z + input[2] + 12
+
+#4:
+print(z%26 - 12 == input[3])
+# =>
+z //= 26
+
+z = 26*z + input[4] + 6
+
+print(z%26 - 2 == input[5])
+z //= 26
+
+z = 26*z + input[6] + 15
+
+print(z%26 - 12 == input[7])
+z //= 26
+
+z = 26*z + input[8] + 7
+
+z = 26*z + input[9] + 11
+
+print(z%26 - 3 == input[10])
+z //= 26
+
+print(z%26 - 13 == input[11])
+z //= 26
+
+print(z%26 - 12 == input[12])
+z //= 26
+
+print(z%26 - 13 == input[13])
+z //= 26
+
