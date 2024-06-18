@@ -5,10 +5,13 @@ class Device():
         self.ip_idx = ip_idx
 
     def instruction_pointer(self):
-        if self.ip_idx:
+        if self.ip_idx is not None:
             return self.registers[self.ip_idx]
         else:
             return None
+
+    def increment_ip(self):
+        self.registers[self.ip_idx] += 1
 
     def exec_instruction(self, opcode, A, B, C):
         match opcode:

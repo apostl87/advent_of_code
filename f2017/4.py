@@ -1,0 +1,1 @@
+input_ = open("4.in").read()
