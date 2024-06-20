@@ -33,7 +33,7 @@ adjacent = [1, 1+1j, 1j, -1+1j, -1, -1-1j, -1j, 1-1j]
 # Constructing loop
 while True:
     if grid[cursor + dir*-1j] == 0:
-        dir *= -1j
+        dir *= -1j # Change direction by turning left
     cursor += dir
     grid[cursor] = sum([grid[x+cursor] for x in adjacent])
 
